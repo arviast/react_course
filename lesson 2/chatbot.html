@@ -28,7 +28,7 @@
       function ChatMessage({message, sender}) {
         return (
           <div>
-            {sender === 'robot' && <img width="50" src="/robot.png"/> }
+            {sender === 'robot' && <img width="50" src="lesson 2/robot.png"/> }
             {message}
             {sender === 'user' && <img width="50" src="/user.png"/> }
           </div>
@@ -39,8 +39,14 @@
       (
         <>
           <ChatInput />
-          <ChatMessage message="Hello, how are you?" sender="user" />
-          <ChatMessage message="What is your name?" sender="robot" />
+          <ChatMessage 
+            message="Hello, how are you?" 
+            sender="user" 
+          />
+          <ChatMessage 
+            message="What is your name?" 
+            sender="robot" 
+          />
         </>
       )
 
