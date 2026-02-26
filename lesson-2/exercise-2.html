@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>React App</title>
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+<body>
+    <div id="root"></div>
+    
+    <script type="text/babel">
+        function ProductDetails({name, price, discountPrice, img}) {
+            return (
+                <div style={{marginBottom: '20px', paddingBottom: '20px'}}>
+                    <img src={img} width="50"/>
+                    <p>{name}</p>
+                    {discountPrice ? <del>Price: ${price}</del> : <p>Price: ${price}</p>}
+                    {discountPrice && <p>Discount Price: ${discountPrice}</p>}
+                    <button>Add to Cart</button>
+                </div>
+            );
+        }
+
+        function App() {
+            return (
+                <>
+                    <ProductDetails img="cotton-socks.png" name="Cotton Socks" price={15} discountPrice={10} />
+                    <ProductDetails img="plain-t-shirt.png" name="Plain T-Shirt" price={20} />
+                    <ProductDetails img="tennis-balls.png" name="Tennis Balls" price={12} discountPrice={7} />
+                </>
+            );
+        }
+        
+        ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+    </script>
+</body>
+</html>
