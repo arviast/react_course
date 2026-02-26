@@ -28,30 +28,31 @@
       function ChatMessage({message, sender}) {
         return (
           <div>
-            {sender === 'robot' && <img width="50" src="lesson 2/robot.png"/> }
+            {sender === 'robot' && <img width="50" src="/lesson-2/robot.png"/> }
             {message}
-            {sender === 'user' && <img width="50" src="/user.png"/> }
+            {sender === 'user' && <img width="50" src="/lesson-2/user.png"/> }
           </div>
         );
       }
 
-      const app = 
-      (
-        <>
-          <ChatInput />
-          <ChatMessage 
-            message="Hello, how are you?" 
-            sender="user" 
-          />
-          <ChatMessage 
-            message="What is your name?" 
-            sender="robot" 
-          />
-        </>
-      )
+      function App() {
+        return (
+          <>
+            <ChatInput />
+            <ChatMessage 
+              message="Hello, how are you?" 
+              sender="user" 
+            />
+            <ChatMessage 
+              message="What is your name?" 
+              sender="robot" 
+            />
+          </>
+        );
+      } 
 
       const container = document.querySelector('.js-container');
-      const root = ReactDOM.createRoot(container).render(app);
+      const root = ReactDOM.createRoot(container).render(<App />);
     
     </script>
   </body>
