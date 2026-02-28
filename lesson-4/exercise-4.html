@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>React App</title>
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script src="https://unpkg.com/supersimpledev/dayjs.js"></script>
+    <style>
+        body {
+            margin: 0px;
+        }
+
+        .button-class {
+            background-color: rgb(25,135,84);
+            color: white;
+            border:none;
+            padding:15px 20px;
+            margin-right: 5px;
+            margin-left:5px;
+        }
+
+        .button-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background-color: rgb(222,222,222);
+        }
+    </style>
+</head>
+<body>
+    <div id="root"></div>
+    
+    <script type="text/babel">
+        function App() {
+
+            const buttomElem = React.useRef(null)
+            const [times, setTimes] = React.useState(0);
+            return (
+                <div className="button-container">
+                    <button 
+                        className="button-class"
+                        ref={buttomElem}
+                        onClick={() => setTimes(times + 1)} >
+                            Clicked {times} times
+                    </button>
+                    <button 
+                        className="button-class"
+                        onClick={() => setTimes(0)}>
+                            Reset
+                    </button>
+                    <button
+                        className="button-class"
+                        onClick={() => {
+                            const interval = setInterval(() => {
+                                buttomElem.current.click();
+                            }, 1000);
+                        }}
+                    >Auto Click</button>
+                </div>
+            );
+        }
+
+        ReactDOM.render(<App />, document.getElementById('root'));
+    </script>
+</body>
+</html>

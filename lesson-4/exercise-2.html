@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>React App</title>
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <style>
+        .button-class { 
+            background-color: rgb(0,123,255);
+            border-radius: 10px;
+            color: white;
+            padding: 10px 20px;
+            border:none;
+            margin-top: 20px;
+            margin-right: 5px;
+        }
+
+        .input-class {
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid rgb(200,200,200);
+            margin-top: 20px;
+        }
+
+        .button-class-password {
+            margin-left: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div id="root"></div>
+    
+    <script type="text/babel">
+        function App() {
+            const [passwordState, setPasswordState] = React.useState(true);
+           
+            return (
+                <div>
+                    <h1>Hello, welcome to my website!</h1>
+                    <div> 
+                        <input 
+                            placeholder="Email"
+                            className="input-class">
+                        </input>
+                    </div>
+                    <div>
+                        <input 
+                        type={passwordState ? "password" : "text"} 
+                        placeholder="Password" 
+                        className="input-class"
+                        ></input>
+                        <button 
+                            onClick={()=>{
+                                setPasswordState(!passwordState)
+                            }}
+                            className="button-class-password">
+                            {passwordState ? "Show" : "Hide"}
+                        </button>
+                    </div>
+                    <div>
+                        <button className="button-class">Login</button>
+                        <button className="button-class">Sign Up</button>
+                    </div>
+                </div>
+
+            )
+        }
+        
+        ReactDOM.render(<App />, document.getElementById('root'));
+    </script>
+</body>
+</html>
