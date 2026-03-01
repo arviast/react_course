@@ -7,7 +7,7 @@ export function Checkout() {
     return (
         <>
             <title>Checkout</title>
-            <link rel="icon" type="image/svg+xml" to="cart-favicon.png" />
+            <link rel="icon" type="image/svg+xml" href="cart-favicon.png" />
             <div className="checkout-header">
                 <div className="header-content">
                     <div className="checkout-header-left-section">
