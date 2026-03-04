@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 import dayjs from 'dayjs';
 import { formatMoney } from '../../utils/utils';
+import { useNavigate } from 'react-router';
 import './checkout-header.css';
 import './checkout.css';
 import { CheckoutHeader } from './Checkout-Header';
@@ -10,6 +11,7 @@ import { CheckoutHeader } from './Checkout-Header';
 export function Checkout({ cartItems, loadCart }) {
     const [deliveryOptions, setDeliveryOptions] = useState([]);
     const [paymentSummary, setPaymentSummary] = useState(null);
+    const navigate = useNavigate();
 
     useEffect(() => {
         axios.get('/api/delivery-options?expand=estimatedDeliveryTime')
@@ -25,11 +27,17 @@ export function Checkout({ cartItems, loadCart }) {
             });
     }, [cartItems]);
 
+    const createOrder = async () => {
+        await axios.post('/api/orders');
+        await loadCart();
+        navigate('/orders');
+    }
+
     return (
         <>
             <title>Checkout</title>
             <link rel="icon" type="image/svg+xml" href="cart-favicon.png" />
-            
+
             <CheckoutHeader paymentSummary={paymentSummary} />
 
             <div className="checkout-page">
@@ -49,7 +57,7 @@ export function Checkout({ cartItems, loadCart }) {
                             }
 
                             return (
-                            
+
                                 <div key={cartItem.productId} className="cart-item-container">
                                     <div className="delivery-date">
                                         Delivery date: {dayjs(selectedDeliveryOption.estimatedDeliveryTimeMs).format('dddd, MMMM D')}
@@ -103,7 +111,7 @@ export function Checkout({ cartItems, loadCart }) {
                                                 return (
                                                     <div key={deliveryOption.id} className="delivery-option" onClick={updateDeliveryOption}>
                                                         <input type="radio" checked={deliveryOption.id === cartItem.deliveryOptionId}
-                                                            className="delivery-option-input" onChange={()=>{}}
+                                                            className="delivery-option-input" onChange={() => { }}
                                                             name={`delivery-option-${cartItem.productId}`} />
                                                         <div>
                                                             <div className="delivery-option-date">
@@ -126,10 +134,13 @@ export function Checkout({ cartItems, loadCart }) {
                     </div>
 
                     <div className="payment-summary">
+
+
                         <div className="payment-summary-title">
                             Payment Summary
                         </div>
                         {paymentSummary && (
+
                             <>
                                 <div className="payment-summary-row">
                                     <div>Items ({paymentSummary.totalItems}):</div>
@@ -156,7 +167,7 @@ export function Checkout({ cartItems, loadCart }) {
                                     <div className="payment-summary-money">{formatMoney(paymentSummary.totalCostCents)}</div>
                                 </div>
 
-                                <button className="place-order-button button-primary">
+                                <button className="place-order-button button-primary" onClick={createOrder}>
                                     Place your order
                                 </button>
                             </>
