@@ -43,7 +43,13 @@ export function Checkout({ cartItems, loadCart }) {
                                 return deliveryOption.id === cartItem.deliveryOptionId;
                             })
 
+                            const deleteItem = async () => {
+                                await axios.delete(`api/cart-items/${cartItem.productId}`);
+                                await loadCart();
+                            }
+
                             return (
+                            
                                 <div key={cartItem.productId} className="cart-item-container">
                                     <div className="delivery-date">
                                         Delivery date: {dayjs(selectedDeliveryOption.estimatedDeliveryTimeMs).format('dddd, MMMM D')}
@@ -68,7 +74,7 @@ export function Checkout({ cartItems, loadCart }) {
                                                 <span className="update-quantity-link link-primary">
                                                     Update
                                                 </span>
-                                                <span className="delete-quantity-link link-primary">
+                                                <span onClick={deleteItem} className="delete-quantity-link link-primary">
                                                     Delete
                                                 </span>
                                             </div>
