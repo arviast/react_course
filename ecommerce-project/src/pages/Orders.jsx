@@ -1,5 +1,5 @@
 import { Link } from 'react-router'
-import { Header } from './Component/Header'
+import { Header } from './component/Header'
 import { formatMoney } from '../utils/utils';
 import { useState, useEffect, Fragment } from 'react';
 import axios from 'axios';
