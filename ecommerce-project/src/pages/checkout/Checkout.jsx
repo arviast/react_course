@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import dayjs from 'dayjs';
-import { formatMoney } from '../../utils/utils';
+import { formatMoney } from '../../utils/money';
 import { useNavigate } from 'react-router';
 import './checkout-header.css';
 import './checkout.css';
