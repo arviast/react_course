@@ -52,7 +52,7 @@ export function Product({product, loadCart}) {
                 Added
             </div>
 
-            <button className="add-to-cart-button button-primary" onClick={async () => {
+            <button data-testid="add-to-cart-button" className="add-to-cart-button button-primary" onClick={async () => {
                 await axios.post("/api/cart-items", {
                     productId: product.id,
                     quantity: quantity
